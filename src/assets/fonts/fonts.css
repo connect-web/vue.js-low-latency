@@ -1,0 +1,20 @@
+@font-face {
+    font-family: runescape;
+    src: url("runescape.ttf");
+}
+
+@font-face {
+    font-family: runescape-bold;
+    src: url("runescape_bold.ttf");
+}
+
+
+
+*{
+    font-family: runescape, 'sans-serif';
+}
+
+.bold-text{
+    font-family: runescape-bold, 'sans-serif';
+}
+
