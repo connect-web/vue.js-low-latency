@@ -1,0 +1,95 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "lastUpdated": "2024-10-28T16:33:12.808171Z",
+      "Activities": ["Magic"],
+      "lifetimeCount": 20298,
+      "UnbannedCount": 0,
+      "BannedCount": 0,
+      "unbannedPlayerIds": null,
+      "bannedPlayerIds": null
+    }, {
+      "id": 3,
+      "lastUpdated": "2024-10-28T16:33:12.808171Z",
+      "Activities": ["Woodcutting"],
+      "lifetimeCount": 19698,
+      "UnbannedCount": 0,
+      "BannedCount": 0,
+      "unbannedPlayerIds": null,
+      "bannedPlayerIds": null
+    }, {
+      "id": 2,
+      "lastUpdated": "2024-10-28T16:33:12.808171Z",
+      "Activities": ["Mining"],
+      "lifetimeCount": 12712,
+      "UnbannedCount": 0,
+      "BannedCount": 0,
+      "unbannedPlayerIds": null,
+      "bannedPlayerIds": null
+    }, {
+      "id": 4,
+      "lastUpdated": "2024-10-28T16:33:12.808171Z",
+      "Activities": ["Fishing"],
+      "lifetimeCount": 8016,
+      "UnbannedCount": 0,
+      "BannedCount": 0,
+      "unbannedPlayerIds": null,
+      "bannedPlayerIds": null
+    }, {
+      "id": 6,
+      "lastUpdated": "2024-10-28T16:33:12.808171Z",
+      "Activities": ["Hitpoints", "Magic", "Ranged", "Strength"],
+      "lifetimeCount": 6859,
+      "UnbannedCount": 0,
+      "BannedCount": 0,
+      "unbannedPlayerIds": null,
+      "bannedPlayerIds": null
+    }, {
+      "id": 5,
+      "lastUpdated": "2024-10-28T16:33:12.808171Z",
+      "Activities": ["Hitpoints", "Strength"],
+      "lifetimeCount": 6670,
+      "UnbannedCount": 0,
+      "BannedCount": 0,
+      "unbannedPlayerIds": null,
+      "bannedPlayerIds": null
+    }, {
+      "id": 8,
+      "lastUpdated": "2024-10-28T16:33:12.808171Z",
+      "Activities": ["Agility"],
+      "lifetimeCount": 5572,
+      "UnbannedCount": 0,
+      "BannedCount": 0,
+      "unbannedPlayerIds": null,
+      "bannedPlayerIds": null
+    }, {
+      "id": 27,
+      "lastUpdated": "2024-10-28T16:33:12.808171Z",
+      "Activities": ["Agility", "Attack", "Construction", "Cooking", "Crafting", "Defence", "Farming", "Firemaking", "Fishing", "Fletching", "Herblore", "Hitpoints", "Hunter", "Magic", "Mining", "Prayer", "Ranged", "Runecraft", "Slayer", "Smithing", "Strength", "Thieving", "Woodcutting"],
+      "lifetimeCount": 5032,
+      "UnbannedCount": 0,
+      "BannedCount": 0,
+      "unbannedPlayerIds": null,
+      "bannedPlayerIds": null
+    }, {
+      "id": 17,
+      "lastUpdated": "2024-10-28T16:33:12.808171Z",
+      "Activities": ["Cooking"],
+      "lifetimeCount": 4843,
+      "UnbannedCount": 0,
+      "BannedCount": 0,
+      "unbannedPlayerIds": null,
+      "bannedPlayerIds": null
+    }, {
+      "id": 37,
+      "lastUpdated": "2024-10-28T16:33:12.808171Z",
+      "Activities": ["Strength"],
+      "lifetimeCount": 4833,
+      "UnbannedCount": 0,
+      "BannedCount": 0,
+      "unbannedPlayerIds": null,
+      "bannedPlayerIds": null
+    }
+  ]
+}
