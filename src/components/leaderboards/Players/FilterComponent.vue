@@ -1,29 +1,28 @@
 <template>
   <div class="filters-container">
-    <div class="filters">
-      <div
-          v-for="filter in filters"
-          :key="filter.label"
-          class="filter-column"
-      >
-        <div class="filter-item">
-          <label :class="filter.className">{{ filter.label }}</label>
-          <div class="filter-row" v-for="input in filter.inputs" :key="input.id">
-            <label :for="input.id">{{ input.placeholder }}:</label>
-            <input
-                v-model="displayValues[input.id]"
-                :id="input.id"
-                :placeholder="input.placeholder"
-                :min="input.min"
-                :max="input.max"
-                @input="updateFilterValue(input.id, $event.target.value)"
-            />
-          </div>
+    <div
+        v-for="filter in filters"
+        :key="filter.label"
+        class="filter-column"
+    >
+      <div class="filter-header">{{ filter.label }}</div>
+      <div class="filter-dropdown">
+        <div class="filter-row" v-for="input in filter.inputs" :key="input.id">
+          <label :for="input.id">{{ input.placeholder }}:</label>
+          <input
+              v-model="displayValues[input.id]"
+              :id="input.id"
+              :placeholder="input.placeholder"
+              :min="input.min"
+              :max="input.max"
+              @input="updateFilterValue(input.id, $event.target.value)"
+          />
         </div>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import { viewLargeNumbers, parseLargeNumber } from '@/utils/numberFilters.js';
@@ -91,36 +90,38 @@ export default {
   display: flex;
   justify-content: center;
   width: 100%;
-
-
-  background: #0d7eff;
-}
-
-.filters {
-  display: flex;
-  flex-direction: row; /* Ensures filters are stacked horizontally */
-  gap: 20px; /* Space between each filter column */
-  flex-wrap: wrap; /* Allows wrapping on smaller screens */
-  width: 100%;
-  max-width: 1200px; /* Optional max-width */
 }
 
 .filter-column {
-  flex: 1;
-  min-width: 250px; /* Adjust to control minimum column width */
-  background-color: rgba(47, 47, 47, 0.5);
-  padding: 1em;
-  border: 1px solid #cccccc;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
+  cursor: pointer;
+  margin: 0 15px;
 }
 
+.filter-header {
+  font-size: 1.5rem;
+  padding: 0.5em;
+  background-color: rgba(47, 47, 47, 0.9);
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+}
 
+.filter-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(47, 47, 47, 0.9);
+  padding: 1em;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  min-width: 200px;
+  z-index: 10;
+}
 
-
-.filter-item label{
-  font-size: 2rem;
+.filter-column:hover .filter-dropdown {
+  display: block;
 }
 
 
@@ -128,27 +129,23 @@ export default {
   display: flex;
   align-items: center;
   gap: 8px;
-  width: 100%;
+  margin-bottom: 10px;
 }
 
 .filter-row label {
-  font-size: 2rem;
-  flex: 0 0 25%; /* Takes up 25% of the row's width */
+  font-size: 1rem;
+  flex: 0 0 30%; /* Adjusts label width */
   text-align: right;
-  padding-right: 8px; /* Adds a little space between label and input */
 }
 
 .filter-row input {
-  font-size: 1.5rem;
-  flex: 1; /* Takes up the remaining 75% */
-  width: 100%; /* Ensures input fills the remaining space */
+  font-size: 1rem;
+  flex: 1;
   padding: 0.5em;
   border: 1px solid #cccccc;
   border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.3); /* Optional: Adjust based on theme */
+  background-color: rgba(0, 0, 0, 0.3);
 }
-
-
 
 
 </style>
