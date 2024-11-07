@@ -71,32 +71,36 @@
 
 <script>
 import PlayerStatsCard from '@/components/leaderboards/Players/PlayerStatsCard.vue';
-import magic_players from '@/components/leaderboards/data/magic-players.json';
-import {viewLargeNumbers} from "@/utils/numberFilters.js";
+import {viewLargeNumbers, viewTruncatedLargeNumbers} from "@/utils/numberFilters.js";
 
 export default {
   name: 'PlayerTable',
   components: { PlayerStatsCard },
+  props: {
+    rows: {
+      type: Array,
+      default: () => [],
+    }
+  },
   data() {
     return {
-      players: magic_players.data,
       currentPage: 1,
       itemsPerPage: 10
     };
   },
   computed: {
     totalPages() {
-      return Math.ceil(this.players.length / this.itemsPerPage);
+      return Math.ceil(this.rows.length / this.itemsPerPage);
     },
     displayedPlayers() {
       const start = (this.currentPage - 1) * this.itemsPerPage;
       const end = start + this.itemsPerPage;
-      return this.players.slice(start, end);
+      return this.rows.slice(start, end); // Use rows prop instead of hardcoded data
     }
   },
   methods: {
     formatAmount(amount) {
-      return viewLargeNumbers(amount);
+      return viewTruncatedLargeNumbers(amount);
     },
     nextPage() {
       if (this.currentPage < this.totalPages) this.currentPage++;
