@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { viewLargeNumbers } from '@/utils/numberFilters.js';
+import {viewLargeNumbers, viewTruncatedLargeNumbers} from '@/utils/numberFilters.js';
 
 export default {
   name: 'PlayerStatsCard',
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     formatAmount(amount) {
-      return viewLargeNumbers(amount);
+      return viewTruncatedLargeNumbers(amount);
     },
     sanitizeFileName(input) {
       return input.replace(/[^a-zA-Z\s]/g, '').replaceAll(' ', '_');
