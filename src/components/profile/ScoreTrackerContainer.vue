@@ -16,6 +16,7 @@
 
 <script>
 import { viewLargeNumbers } from '@/utils/numberFilters.js';
+import {getImageUrl} from "@/utils/imageHelper.js";
 
 export default {
   name: 'ScoreTrackerContainer',
@@ -65,25 +66,8 @@ export default {
     formatAmount(amount) {
       return viewLargeNumbers(amount);
     },
-    filterFileName(input){
-      let output = input.replace(/[^a-zA-Z\s]/g, '');
-      output = output.replaceAll(' ', '_')
-      return output
-    },
     getIconImage(item) {
-      // Choose the image path based on the type
-      var iconFolder;
-      let item_name = item.toLowerCase();
-
-      if (this.type === 'Skills'){
-        iconFolder = 'skill_icons';
-      }else{
-        iconFolder = 'minigame_icons';
-        item_name = this.filterFileName(item_name)
-
-      }
-
-      return `/img/${iconFolder}/${item_name}.png`;
+      return getImageUrl(this.type, item);
     }
   }
 };
