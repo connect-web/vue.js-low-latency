@@ -44,23 +44,23 @@
     </table>
 
     <div class="flex w-full items-center mb-7 player-nav-buttons">
-      <div class="ml-auto text-gray-500 text-xs sm:inline-flex hidden items-center">
+      <div class="ml-auto sm:inline-flex hidden items-center page-navigation-container">
         <span class="mr-3 pagination-top">Page {{ currentPage }} of {{ totalPages }}</span>
         <button
             @click="prevPage"
             :disabled="currentPage === 1"
-            class="pagination-left inline-flex mr-2 items-center h-8 w-8 justify-center text-gray-400 rounded-md shadow border border-gray-200 dark:border-gray-800 leading-none py-0"
+            class="pagination-left inline-flex mr-2 items-center h-8 w-8 justify-center rounded-md  border border-gray-200 dark:border-gray-800 leading-none py-0"
         >
-          <svg class="w-4" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="w-4" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
         </button>
         <button
             @click="nextPage"
             :disabled="currentPage === totalPages"
-            class="pagination-right inline-flex items-center h-8 w-8 justify-center text-gray-400 rounded-md shadow border border-gray-200 dark:border-gray-800 leading-none py-0"
+            class="pagination-right inline-flex items-center h-8 w-8 justify-center rounded-md  border border-gray-200 dark:border-gray-800 leading-none py-0"
         >
-          <svg class="w-4" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="w-4" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </button>
@@ -150,11 +150,20 @@ export default {
   border-bottom: 1px solid white;
 }
 
+.page-navigation-container{
+  background-color: black;
+  padding:0.75rem;
+  border: 1px solid #0d7eff;
+  border-radius: .75rem;
+
+}
 
 
 .pagination-left,
 .pagination-right {
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #0d7eff;
 }
 
 .pagination-left[disabled],
@@ -162,4 +171,14 @@ export default {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+.player-nav-buttons{
+  font-size: 2rem;
+  color: #0d7eff;
+  bottom: 0;
+  right: 2rem;
+  position: fixed;
+  z-index: 2;
+}
+
 </style>

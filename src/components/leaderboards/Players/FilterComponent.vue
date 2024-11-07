@@ -38,6 +38,16 @@ export default {
         "total-level-max": 2500,
         "total-exp-min": 0,
         "total-exp-max": 10000000000,
+        "unique-skills-min": 0,
+        "unique-skills-max": 25,
+        "unique-activities-min": 0,
+        "unique-activities-max": 500,
+        "unique-skills-gains-min": 0,
+        "unique-skills-gains-max": 25,
+        "unique-activities-gains-min": 0,
+        "unique-activities-gains-max": 500,
+
+
       },
       displayValues: {}, // Stores formatted values for display
       filters: [
@@ -62,6 +72,37 @@ export default {
             { id: "total-exp-max", placeholder: "max", min: 0, max: 10000000000 },
           ],
         },
+        {
+          label: "Unique Skills",
+          inputs: [
+            { id: "unique-skills-min", placeholder: "min", min: 0, max: 25 },
+            { id: "unique-skills-max", placeholder: "max", min: 0, max: 25 },
+          ],
+        },
+        {
+          label: "Unique Activities",
+          inputs: [
+            { id: "unique-activities-min", placeholder: "min", min: 0, max: 500 },
+            { id: "unique-activities-max", placeholder: "max", min: 0, max: 500 },
+          ],
+        },
+          {
+          label: "Unique Skill gains",
+          inputs: [
+            { id: "unique-skills-gains-min", placeholder: "min", min: 0, max: 25 },
+            { id: "unique-skills-gains-max", placeholder: "max", min: 0, max: 25 },
+          ],
+        },
+        {
+          label: "Unique Activity gains",
+          inputs: [
+            { id: "unique-activities-gains-min", placeholder: "min", min: 0, max: 500 },
+            { id: "unique-activities-gains-max", placeholder: "max", min: 0, max: 500 },
+          ],
+        },
+
+
+
       ],
     };
   },

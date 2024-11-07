@@ -51,13 +51,14 @@
           <!-- Skill Gains (Images) -->
           <td class="px-3 py-2">
             <div class="skills-container">
-              <img
-                  v-for="(activity, i) in row.Activities"
-                  :key="i"
-                  :src="getImageUrl(this.type, activity)"
-                  :alt="activity"
-                  class="img-skill"
-              />
+              <TooltipImage :tooltip-text="`${activity}`"
+                            v-for="(activity, i) in row.Activities"
+                            :key="i"
+                            :src="`${getImageUrl(this.type, activity)}`"
+                            :alt="`${activity}`"
+                            class="img-skill"
+              ></TooltipImage>
+
             </div>
           </td>
         </tr>
@@ -73,9 +74,11 @@
 import skillsLeaderboard from '@/components/leaderboards/data/skills-leaderboard.json';
 import LeaderboardService from '@/services/LeaderboardService.js';
 import {getImageUrl} from '@/utils/imageHelper.js';
+import TooltipImage from "@/components/leaderboards/ToolTip.vue";
 
 export default {
   name: 'LeaderboardToplist',
+  components: {TooltipImage},
   props: {
     type: {
       type: String,
@@ -170,10 +173,9 @@ table tbody td {
 }
 
 .skills-container {
-  display: flex;
-  flex-wrap: wrap; /* Allows images to wrap to a new line */
+  display: flex !important;
+  flex-wrap: wrap !important; /* Allows images to wrap to a new line */
   gap: 0.5rem; /* Space between images */
-
 }
 
 table td button {

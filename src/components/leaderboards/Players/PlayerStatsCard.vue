@@ -87,6 +87,8 @@ export default {
   width: 100%;
   padding-top: 100%; /* Aspect ratio trick for flexible square layout */
   position: relative;
+  max-width: 50px;
+  max-height: 50px;
 }
 
 .img-icon {
@@ -96,6 +98,7 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: contain; /* Scales icon while maintaining aspect ratio */
+
 }
 
 .value {

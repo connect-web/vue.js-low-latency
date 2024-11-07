@@ -6,7 +6,7 @@
 
       <!-- Conditionally Render Components -->
       <LeaderboardToplist v-if="!showSearch" :type="type" @view-details="handleViewDetails" @update:type="updateType" />
-      <LeaderboardSearch v-else :rows="rows" :activities="activities" :type="type" @go-back="handleGoBack" />
+      <PlayersComponent v-else :rows="rows" :activities="activities" :type="type" @go-back="handleGoBack" />
     </div>
   </div>
 </template>
@@ -15,11 +15,11 @@
 import Header from '../components/Header.vue'
 import LeaderboardToplist from "@/components/leaderboards/LeaderboardToplist.vue";
 import PlayerTable from "@/components/leaderboards/Players/PlayerTable.vue";
-import LeaderboardSearch from "@/components/leaderboards/Players/LeaderboardSearch.vue";
+import PlayersComponent from "@/components/leaderboards/PlayersComponent.vue";
 export default {
   name: 'Leaderboards',
   components: {
-    LeaderboardSearch,
+    PlayersComponent,
     PlayerTable,
     Header,
     LeaderboardToplist
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     async handleViewDetails({ playersData, activities, type }) {
-      // Set rows and show LeaderboardSearch
+      // Set rows and show PlayersComponent
       this.rows = playersData;
       this.activities = activities
       this.showSearch = true;
@@ -45,7 +45,7 @@ export default {
     },
     handleGoBack(type) {
       console.log(type);
-      // Toggle back to show LeaderboardToplist and hide LeaderboardSearch
+      // Toggle back to show LeaderboardToplist and hide PlayersComponent
       this.showSearch = false;
       this.type = type;
     },
