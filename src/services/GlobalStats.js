@@ -11,7 +11,15 @@ class ApiService {
         }
 
         try {
-            const response = await fetch('http://localhost:4050/api/v2/user/global-stats', {
+            const protocol = import.meta.env.VITE_SSL_ENABLED === 'true' ? 'https' : 'http';
+            const backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
+
+            // Construct the full URL
+            const backendUrl = `${protocol}://${backendDomain}`;
+
+            const url = `${backendUrl}/api/v2/user/global-stats`;
+            console.log("stats: ", url);
+            const response = await fetch(url, {
                 credentials: 'include',
             });
 
