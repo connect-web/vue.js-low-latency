@@ -80,15 +80,15 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  max-width: 50px;
+  max-height: 50px;
 }
 
 .icon-container {
   width: 100%;
   padding-top: 100%; /* Aspect ratio trick for flexible square layout */
   position: relative;
-  max-width: 50px;
-  max-height: 50px;
+
 }
 
 .img-icon {

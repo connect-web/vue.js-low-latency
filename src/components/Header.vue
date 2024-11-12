@@ -13,16 +13,7 @@
         Dashboard
       </a>
 
-      <!-- Search Link -->
-      <a
-          href="/leaderboards"
-          :class="[
-          'h-full border-b-2 inline-flex items-center mr-8',
-          active === 'leaderboards' ? 'text-blue-500 border-blue-500  no-pointer' : 'text-white-600 dark:text-white-400 cursor-pointer border-transparent'
-        ]"
-      >
-        Leaderboards
-      </a>
+
 
       <!-- Machine Learning Link -->
       <a
@@ -33,6 +24,17 @@
         ]"
       >
         ML Leaderboards
+      </a>
+
+      <!-- Search Link -->
+      <a
+          href="/leaderboards"
+          :class="[
+          'h-full border-b-2 inline-flex items-center mr-8',
+          active === 'leaderboards' ? 'text-blue-500 border-blue-500  no-pointer' : 'text-white-600 dark:text-white-400 cursor-pointer border-transparent'
+        ]"
+      >
+        Leaderboards
       </a>
     </div>
     <div class="ml-auto flex items-center space-x-7">

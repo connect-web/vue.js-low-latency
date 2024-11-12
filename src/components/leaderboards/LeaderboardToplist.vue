@@ -27,44 +27,10 @@
     <hr class="my-8">
 
 
-    <!-- Toplist Table Section -->
-    <div class="Toplist scroll-width-thin scroll-blue">
-      <table class="w-full">
-        <thead>
-        <tr class="">
-          <th class=""><u>Player Count</u></th>
-          <th class=""><u>View</u></th>
-          <th class=""><u>{{ type === 'Skills' ? 'Skill Gains' : 'Activity Gains' }}</u></th>
-        </tr>
-        </thead>
-        <tbody class="text-gray-600 dark:text-gray-100 ">
-        <tr v-for="(row, index) in rows" :key="index">
-          <!-- Player Count -->
-          <td class="px-3 py-2">{{ row.lifetimeCount }}</td>
+    <!-- Toplist Component -->
+    <Toplist v-if="ml === false" :type="type" :rows="rows" @view-details="viewDetails" />
+    <MlToplist v-if="ml === true" :type="type" :rows="rows" @view-details="viewDetails" />
 
-          <!-- View Button -->
-          <td class="px-3 py-2">
-            <button class="text-blue-500" @click="viewDetails(row.id, row.Activities)">View</button>
-          </td>
-
-          <!-- Skill Gains (Activities) -->
-          <!-- Skill Gains (Images) -->
-          <td class="px-3 py-2">
-            <div class="skills-container">
-              <TooltipImage :tooltip-text="`${activity}`"
-                            v-for="(activity, i) in row.Activities"
-                            :key="i"
-                            :src="`${getImageUrl(this.type, activity)}`"
-                            :alt="`${activity}`"
-                            class="img-skill"
-              ></TooltipImage>
-
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
 
   </div>
 
@@ -74,16 +40,22 @@
 import skillsLeaderboard from '@/components/leaderboards/data/skills-leaderboard.json';
 import LeaderboardService from '@/services/LeaderboardService.js';
 import {getImageUrl} from '@/utils/imageHelper.js';
-import TooltipImage from "@/components/leaderboards/ToolTip.vue";
+import Toplist from "@/components/leaderboards/Toplist/Toplist.vue";
+import MlToplist from "@/components/leaderboards/Toplist/MlToplist.vue";
 
 export default {
   name: 'LeaderboardToplist',
-  components: {TooltipImage},
+  components: {Toplist,MlToplist},
   props: {
     type: {
       type: String,
       default: 'Skills'
-    }
+    },
+    ml: {
+      type: Boolean,
+      default: false
+    },
+
   },
   data() {
     return {
@@ -106,7 +78,7 @@ export default {
   methods: {
     async loadLeaderboards() {
       // Fetch leaderboard data based on the current type
-      this.rows = await LeaderboardService.fetchLeaderboard(this.type);
+      this.rows = await LeaderboardService.fetchLeaderboard(this.type, this.ml);
     },
     async setType(newType) {
       if (this.type !== newType) {
@@ -114,11 +86,11 @@ export default {
         //await this.loadLeaderboards(); // Refresh leaderboard data
       }
     },
-    async viewDetails(id, activities) {
-      console.log(`Called viewDetails with ID: ${id} and type: ${this.type}`);
+    async viewDetails({id, activities}) {
+      console.log(`Called viewDetails with ID: ${id} and type: ${this.type} on ml=${this.ml}`);
       try {
         // Fetch player data for the specific ID and current type
-        const playersData = await LeaderboardService.fetchPlayers(id, this.type);
+        const playersData = await LeaderboardService.fetchPlayers(id, this.type, this.ml);
 
         // Emit event to pass data to the parent component or use as needed
         let type = this.type
@@ -162,6 +134,7 @@ table thead {
   position: sticky;
   top: 0;
   background: #232323;
+  z-index: 2;
 }
 
 table thead th {

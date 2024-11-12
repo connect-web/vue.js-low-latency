@@ -60,6 +60,11 @@ export default {
       type: String,
       default: 'Skills',
     },
+    ml: {
+      type: Boolean,
+      default: false,
+    },
+
   },
   data() {
     return {
