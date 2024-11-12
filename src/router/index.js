@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Leaderboards from "@/views/Leaderboards.vue";
+import MlLeaderboards from "@/views/MlLeaderboards.vue";
 
 const routes = [
   {
@@ -22,11 +23,11 @@ const routes = [
     component: Leaderboards,
     meta: { requiresProfileCSS: true } // Other pages need profile.css
   },
-  ,
+
   {
     path: '/ml-leaderboards',
     name: 'ml-leaderboards',
-    component: Dashboard,
+    component: MlLeaderboards,
     meta: { requiresProfileCSS: true } // Other pages need profile.css
   },
 
