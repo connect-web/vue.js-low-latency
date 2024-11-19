@@ -11,6 +11,7 @@ class LeaderboardService {
         this.path = `${backendUrl}/api/v2/`;
         this.public = "public/";
         this.ml = "ml/";
+        this.recent = "recent/";
 
         this.apiUrls = {
             skillToplist: 'skill-toplist',
@@ -34,6 +35,10 @@ class LeaderboardService {
             ml: {
                 toplistData: {},
                 playersData: {}
+            },
+            recent: {
+                createdUsers: {},
+                bannedUsers: {},
             }
         };
     }
@@ -44,18 +49,58 @@ class LeaderboardService {
         return api_path + (type === this.dataTypes.Skills ? this.apiUrls.skillToplist : this.apiUrls.activityToplist);
     }
 
-    get_param_key(ml, type){
-        if (!ml){
+    get_param_key(ml, type) {
+        if (!ml) {
             return (type === this.dataTypes.Skills ? 'skill-id' : 'minigame-id');
-        }else{
+        } else {
             return (type === this.dataTypes.Skills ? 'skill' : 'minigame');
         }
     }
+
     get_path_users(ml, type) {
         const api_path = ml ? this.path + this.ml : this.path + this.public;
         return api_path + (type === this.dataTypes.Skills ? this.apiUrls.skillUsers : this.apiUrls.activityUsers);
 
     }
+
+    async fetchRecentUsers(id, recentType, type) {
+        if (!['createdUsers', 'bannedUsers'].includes(recentType)) {
+            throw new Error(`Invalid recent user type: ${recentType}`);
+        }
+
+        if (!['Skills', 'Activities'].includes(type)) {
+            throw new Error(`Invalid type: ${type}. Allowed types are 'Skills' and 'Activities'.`);
+        }
+
+        // Define cache key based on recentType
+        const cacheKey = this.dataCache.recent[recentType];
+
+        // If data is already cached, return it
+        if (Object.keys(cacheKey).length > 0) {
+            return cacheKey;
+        }
+
+        try {
+            // Determine the endpoint based on recentType and type
+            const typePath = type === 'Skills' ? 'skill' : 'minigame';
+            const recentPath = recentType === 'createdUsers' ? `created-${typePath}-users` : `banned-${typePath}-users`;
+            const params = this.get_param_key(false, type);
+            const apiUrl = `${this.path}${this.recent}${recentPath}?${params}=${id}`;
+
+            // Fetch data from the API
+            const response = await fetch(apiUrl, { credentials: 'include' });
+            const data = await response.json();
+
+            // Cache the fetched data
+            this.dataCache.recent[recentType] = data;
+
+            return data;
+        } catch (error) {
+            console.error(`Error fetching recent users for ${recentType} and ${type}:`, error);
+            return {};
+        }
+    }
+
 
 
 
@@ -70,8 +115,8 @@ class LeaderboardService {
 
         if (modeCache.toplistData[type].length === 0) {
             try {
-                const api_url = this.get_path_toplist(ml,type);
-                const response = await fetch(api_url, { credentials: 'include' });
+                const api_url = this.get_path_toplist(ml, type);
+                const response = await fetch(api_url, {credentials: 'include'});
                 modeCache.toplistData[type] = await response.json();
             } catch (error) {
                 console.error('Error fetching toplist data:', error);
@@ -99,11 +144,11 @@ class LeaderboardService {
 
         if (modeCache.playersData[type][id].length === 0) {
             try {
-                const param_key = this.get_param_key(ml,type);
-                const api_url = this.get_path_users(ml,type) + `?${param_key}=${id}`;
+                const param_key = this.get_param_key(ml, type);
+                const api_url = this.get_path_users(ml, type) + `?${param_key}=${id}`;
                 console.log(api_url)
 
-                const response = await fetch(api_url, { credentials: 'include' });
+                const response = await fetch(api_url, {credentials: 'include'});
                 modeCache.playersData[type][id] = await response.json();
             } catch (error) {
                 console.error('Error fetching players data:', error);
