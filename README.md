@@ -1,5 +1,16 @@
 # low-latency-vue
 
+# Website screenshots
+![image](./screenshots/dashboard.png)
+![image](./screenshots/ML%20Leaderboards%20skills.png)
+![image](./screenshots/ML%20Leaderboards%20activities.png)
+![img.png](./screenshots/Leaderboards%20skills.png)
+![img.png](./screenshots/Leaderboard%20Skills%20-%20Fishing.png)
+
+
+
+# Vue.js info
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
